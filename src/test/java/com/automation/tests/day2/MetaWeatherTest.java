@@ -8,6 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MetaWeatherTest {
 
+    /**
+     * /api/location/search/?query=san
+     * /api/location/search/?query=london
+     * /api/location/search/?lattlong=36.96,-122.02
+     * /api/location/search/?lattlong=50.068,-5.316
+     * /api/location/44418/ }/
+     * "title": "San Francisco",
+     * "location_type": "City",
+     * "woeid": 2487956,
+     * "latt_long": "37.777119, -122.41964"
+     * },
+     */
+
     private String baseURI = "https://www.metaweather.com/api/";
 
     @Test
@@ -19,6 +32,11 @@ public class MetaWeatherTest {
 
         assertEquals(200, response.getStatusCode(), response.prettyPrint());
     }
+
+    // /users/100/ - 100 it's a path parameter
+    // /users/255/ - 155 it's a path parameter
+    // /users/255?name=James | name - query parameter key=value , key it's a query parameter
+    //        "woeid": 2514815, this woeid stands for 	Where On Earth ID, based on this value we can get weather info in specific p
 
     @Test
     public void test2(){
