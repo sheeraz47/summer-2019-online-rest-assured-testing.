@@ -57,6 +57,15 @@ public class ORDSTestDAy3 {
      * and assert that region name is Europe
      */
 
+    @Test
+    public void test3(){
+        given().
+                accept("application/json").
+                pathParam("id" ,1).
+                when()
+
+    }
+
 
 
 
