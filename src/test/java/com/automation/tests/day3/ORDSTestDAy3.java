@@ -23,9 +23,10 @@ public class ORDSTestDAy3 {
             given().
                     accept("application/json").
                     get("/employees").
-                    then().
+            then().
                     assertThat().statusCode(200).
                     and().assertThat().contentType("application/json").
+                    //log().ifError(); // if the error then its printed otherwise test pass
                     log().all(true);
 
     }
@@ -62,7 +63,40 @@ public class ORDSTestDAy3 {
         given().
                 accept("application/json").
                 pathParam("id" ,1).
-                when()
+        when().get("/regions/{id}").
+                then().assertThat().statusCode(200).
+                and().assertThat().body("region_name", is("Europe")).
+                log().all(true);
+
+    }
+
+    /** ####TASK#####
+     * Given accept type as JSON
+     * And path parameter is id
+     * When user sends get request to /locations
+     *  Then user verifies that status code is 200
+     *  And user verifies that location_id is 1700
+     *  And user verifies that postal_code is 98199
+     *  And user verifies that city is Seattle
+     *  And user verifies that state_province is Washington
+     */
+
+    @Test
+    public void test4(){
+        given().
+                accept("application/json").
+                pathParam("id", 1700).
+        when().get("/locations/{id}").
+                then().assertThat().statusCode(200).
+                and().assertThat().body("location_id", is(1700),
+                                  "street_address", is ("2004 Charade Rd"),
+                                           "postal_code", is ("98199"),
+                                           "city" , is("Seattle"),
+                                           "state_province" , is ("Washington"),
+                                           "country_id", is("US")).
+                    log().all(true);
+
+
 
     }
 
