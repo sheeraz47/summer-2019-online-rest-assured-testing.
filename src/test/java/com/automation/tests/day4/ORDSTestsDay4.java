@@ -137,14 +137,14 @@ public class ORDSTestsDay4 {
     @DisplayName("Verify that payload contains following countries")
     public void test5() {
         //to use List.of() set java 9 at least
-        List<String> expected = List.of("Argentina", "Brazil", "Canada", "Mexico", "United States of America");
+        List<String> expected = List.of("name", "surname", "gender", "region");
 
         Response response = given().
                 accept(ContentType.JSON).
-                queryParam("q", "{\"region_id\":\"2\"}").
+                //queryParam("q", "{\"region_id\":\"2\"}").
                 when().
-                get("/countries").prettyPeek();
-        List<String> actual = response.jsonPath().getList("items.country_name");
+                get("").prettyPeek();
+        List<String> actual = response.jsonPath().getList("[0]");
 
         assertEquals(expected, actual);
 
